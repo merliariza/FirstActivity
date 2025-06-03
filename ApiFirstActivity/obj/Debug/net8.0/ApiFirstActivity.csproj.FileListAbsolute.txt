@@ -101,6 +101,7 @@ C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\ob
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.csproj.CoreCompileInputs.cache
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.sourcelink.json
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\staticwebassets\msbuild.ApiFirstActivity.Microsoft.AspNetCore.StaticWebAssets.props
