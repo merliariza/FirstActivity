@@ -40,7 +40,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("name");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -70,7 +70,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("created_at");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -120,7 +120,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("survey_id");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -169,7 +169,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("subquestion_id");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -201,7 +201,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("optiontext");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -246,7 +246,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("varchar(10)")
                         .HasColumnName("response_type");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -288,7 +288,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("subquestiontext");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 
@@ -370,7 +370,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("name");
 
-                    b.Property<DateTime>("Updated_at")
+                    b.Property<DateTime?>("Updated_at")
                         .HasColumnType("timestamp(6)")
                         .HasColumnName("updated_at");
 

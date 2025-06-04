@@ -21,10 +21,10 @@ namespace Infrastructure.Data.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     name = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -38,10 +38,10 @@ namespace Infrastructure.Data.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     optiontext = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,8 +55,6 @@ namespace Infrastructure.Data.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     componenthtml = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     componentreact = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
@@ -66,7 +64,9 @@ namespace Infrastructure.Data.Migrations
                     instruction = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,7 +83,7 @@ namespace Infrastructure.Data.Migrations
                     catalogoptions_id = table.Column<int>(type: "int", nullable: false),
                     categoriesoptions_id = table.Column<int>(type: "int", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false)
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -107,9 +107,7 @@ namespace Infrastructure.Data.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     survey_id = table.Column<int>(type: "int", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     componenthtml = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     componentreact = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
@@ -117,7 +115,9 @@ namespace Infrastructure.Data.Migrations
                     chapter_number = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     chapter_title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -137,8 +137,6 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     chapter_id = table.Column<int>(type: "int", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     question_number = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     response_type = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
@@ -146,7 +144,9 @@ namespace Infrastructure.Data.Migrations
                     comment_question = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     question_text = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -166,14 +166,14 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     subquestion_id = table.Column<int>(type: "int", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     subquestion_number = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     comment_subquestion = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     subquestiontext = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -221,16 +221,16 @@ namespace Infrastructure.Data.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     subquestion_id = table.Column<int>(type: "int", nullable: false),
                     optionquestion_id = table.Column<int>(type: "int", nullable: false),
                     optioncatalog_id = table.Column<int>(type: "int", nullable: false),
                     option_id = table.Column<int>(type: "int", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
                     comment_options = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     numberoption = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<DateTime>(type: "timestamp(6)", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp(6)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Option_question
+    public class Option_question : BaseEntity
     {
         public int Id { get; set; }
-        public DateTime Created_at { get; set; }
         public int Subquestion_id { get; set; }
         public int Optionquestion_id { get; set; }
         public int Optioncatalog_id { get; set; }
         public int Option_id { get; set; }
-        public DateTime Updated_at { get; set; }
         public string? Comment_options { get; set; }
         public string? Numberoption { get; set; }
         public Sub_question? Sub_question { get; set; }
