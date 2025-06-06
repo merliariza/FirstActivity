@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class SurveyRepository : GenericRepository<Survey>, ISurveyRepository
+public class Summary_optionRepository : Repository<Summary_option>, ISummary_optionRepository
 {
     protected readonly FirstActivityDbContext _context;
 
-    public SurveyRepository(FirstActivityDbContext context) : base(context)
+    public Summary_optionRepository(FirstActivityDbContext context) : base(context)
     {
         _context = context;
     }

@@ -4,13 +4,14 @@ using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Infrastructure.Repositories;
 
-public class SurveyRepository : GenericRepository<Survey>, ISurveyRepository
+public class Category_optionRepository : GenericRepository<Category_option>, ICategory_optionRepository
 {
     protected readonly FirstActivityDbContext _context;
 
-    public SurveyRepository(FirstActivityDbContext context) : base(context)
+    public Category_optionRepository(FirstActivityDbContext context) : base(context)
     {
         _context = context;
     }

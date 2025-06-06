@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Application.Interface
+namespace Application.Interfaces.Repositories
 {
     public interface ISub_questionRepository : IGenericRepository<Sub_question>
     {
