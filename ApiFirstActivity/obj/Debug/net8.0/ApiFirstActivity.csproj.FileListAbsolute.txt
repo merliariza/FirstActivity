@@ -116,3 +116,4 @@ C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\ob
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.pdb
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.genruntimeconfig.cache
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ref\ApiFirstActivity.dll
+C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\AutoMapper.dll
