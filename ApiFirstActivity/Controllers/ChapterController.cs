@@ -1,4 +1,6 @@
+using Application.DTOs;
 using Application.Interfaces;
+using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,73 +9,77 @@ namespace ApiFirstActivity.Controllers;
 public class ChaptersController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public ChaptersController(IUnitOfWork unitOfWork)
+    public ChaptersController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
-    // GET: api/Chapters
+  // GET: api/Chapters
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Chapter>>> Get()
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<ChapterDto>>> Get()
     {
-        var Chapters = await _unitOfWork.Chapters.GetAllAsync();
-        return Ok(Chapters);
+        var Chapter = await _unitOfWork.Chapters.GetAllAsync();
+        return _mapper.Map<List<ChapterDto>>(Chapter);
     }
 
     // GET: api/Chapters/{id}
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(int id)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ChapterDto>> Get(int id)
     {
         var Chapter = await _unitOfWork.Chapters.GetByIdAsync(id);
         if (Chapter == null)
-            return NotFound($"Chapter with id {id} was not found.");
-        return Ok(Chapter);
+        {
+            return NotFound($"Country with id {id} was not found.");
+        }
+
+        return _mapper.Map<ChapterDto>(Chapter);
     }
 
     // POST: api/Chapters
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] Chapter chapter)
+    public async Task<ActionResult<Chapter>> Post(ChapterDto ChapterDto)
     {
-        if (chapter == null)
-            return BadRequest("chapter cannot be null.");
-
-        _unitOfWork.Chapters.Add(chapter); 
-        await _unitOfWork.SaveAsync(); 
-
-        return CreatedAtAction(nameof(Get), new { id = chapter.Id }, chapter);
+        var Chapter = _mapper.Map<Chapter>(ChapterDto);
+        _unitOfWork.Chapters.Add(Chapter);
+        await _unitOfWork.SaveAsync();
+        if (ChapterDto == null)
+        {
+            return BadRequest();
+        }
+        return CreatedAtAction(nameof(Post), new { id = ChapterDto.Id }, ChapterDto);
     }
 
     // PUT: api/Chapters/{id}
     [HttpPut("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Put(int id, [FromBody] Chapter chapter)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Put(int id, [FromBody] ChapterDto ChapterDto)
     {
-        if (chapter == null || id != chapter.Id)
-            return BadRequest("Invalid chapter data.");
+        if (ChapterDto == null)
+            return NotFound();
 
-        var existingChapter = await _unitOfWork.Chapters.GetByIdAsync(id);
-        if (existingChapter == null)
-            return NotFound($"chapter with id {id} not found.");
+        var chapter = _mapper.Map<Chapter>(ChapterDto);
+        //chapter.Survey_id = chapter.Survey_id;
+        //chapter.Componenthtml = chapter.Componenthtml;
+        //chapter.Componentreact = chapter.Componentreact;
+        //chapter.Chapter_number = chapter.Chapter_number;
+        //chapter.Chapter_title = chapter.Chapter_title;
+        //chapter.Updated_at = DateTime.UtcNow;
 
-        existingChapter.Survey_id = chapter.Survey_id;
-        existingChapter.Componenthtml = chapter.Componenthtml;
-        existingChapter.Componentreact = chapter.Componentreact;
-        existingChapter.Chapter_number = chapter.Chapter_number;
-        existingChapter.Chapter_title = chapter.Chapter_title;
-        existingChapter.Updated_at = DateTime.UtcNow;
-
-        _unitOfWork.Chapters.Update(existingChapter); 
+        _unitOfWork.Chapters.Update(chapter);
         await _unitOfWork.SaveAsync();
 
-        return NoContent();
+        return Ok(ChapterDto);
     }
 
     // DELETE: api/Chapters/{id}
@@ -84,11 +90,10 @@ public class ChaptersController : BaseApiController
     {
         var chapter = await _unitOfWork.Chapters.GetByIdAsync(id);
         if (chapter == null)
-            return NotFound($"chapter with id {id} not found.");
+            return NotFound();
 
-        _unitOfWork.Chapters.Remove(chapter); 
+        _unitOfWork.Chapters.Remove(chapter);
         await _unitOfWork.SaveAsync();
-
         return NoContent();
     }
 }

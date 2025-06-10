@@ -1,4 +1,6 @@
+using Application.DTOs;
 using Application.Interfaces;
+using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,77 +9,80 @@ namespace ApiFirstActivity.Controllers;
 public class QuestionsController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public QuestionsController(IUnitOfWork unitOfWork)
+    public QuestionsController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
-    // GET: api/Questions
+    // GET: api/questions
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Question>>> Get()
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<QuestionDto>>> Get()
     {
-        var Questions = await _unitOfWork.Questions.GetAllAsync();
-        return Ok(Questions);
+        var question = await _unitOfWork.Questions.GetAllAsync();
+        return _mapper.Map<List<QuestionDto>>(question);
     }
 
-    // GET: api/Questions/{id}
+    // GET: api/questions/{id}
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(int id)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<QuestionDto>> Get(int id)
     {
-        var Question = await _unitOfWork.Questions.GetByIdAsync(id);
-        if (Question == null)
-            return NotFound($"Question with id {id} was not found.");
-        return Ok(Question);
+        var question = await _unitOfWork.Questions.GetByIdAsync(id);
+        if (question == null)
+        {
+            return NotFound($"Country with id {id} was not found.");
+        }
+
+        return _mapper.Map<QuestionDto>(question);
     }
 
-    // POST: api/Questions
+    // POST: api/questions
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] Question question)
+    public async Task<ActionResult<Question>> Post(QuestionDto QuestionDto)
     {
-        if (question == null)
-            return BadRequest("question cannot be null.");
-
-        _unitOfWork.Questions.Add(question); 
-        await _unitOfWork.SaveAsync(); 
-
-        return CreatedAtAction(nameof(Get), new { id = question.Id }, question);
+        var question = _mapper.Map<Question>(QuestionDto);
+        _unitOfWork.Questions.Add(question);
+        await _unitOfWork.SaveAsync();
+        if (QuestionDto == null)
+        {
+            return BadRequest();
+        }
+        return CreatedAtAction(nameof(Post), new { id = QuestionDto.Id }, QuestionDto);
     }
 
-    // PUT: api/Questions/{id}
+    // PUT: api/questions/{id}
     [HttpPut("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Put(int id, [FromBody] Question question)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Put(int id, [FromBody] QuestionDto QuestionDto)
     {
-        if (question == null || id != question.Id)
-            return BadRequest("Invalid question data.");
+        if (QuestionDto == null)
+            return NotFound();
 
-        var existingQuestion = await _unitOfWork.Questions.GetByIdAsync(id);
-        if (existingQuestion == null)
-            return NotFound($"question with id {id} not found.");
+        var question = _mapper.Map<Question>(QuestionDto);
+        //question.Chapter_id = question.Chapter_id;
+        //question.Question_number = question.Question_number;
+        //question.Response_type = question.Response_type;
+        //question.Comment_question = question.Comment_question;
+        //question.Question_text = question.Question_text;
+        question.Updated_at = DateTime.UtcNow;
 
-        existingQuestion.Chapter_id = question.Chapter_id;
-        existingQuestion.Question_number = question.Question_number;
-        existingQuestion.Response_type = question.Response_type;
-        existingQuestion.Comment_question = question.Comment_question;
-        existingQuestion.Question_text = question.Question_text;
-
-        existingQuestion.Updated_at = DateTime.UtcNow;
-
-        _unitOfWork.Questions.Update(existingQuestion); 
+        _unitOfWork.Questions.Update(question);
         await _unitOfWork.SaveAsync();
 
-        return NoContent();
+        return Ok(QuestionDto);
     }
 
-    // DELETE: api/Questions/{id}
+    // DELETE: api/questions/{id}
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -85,11 +90,11 @@ public class QuestionsController : BaseApiController
     {
         var question = await _unitOfWork.Questions.GetByIdAsync(id);
         if (question == null)
-            return NotFound($"question with id {id} not found.");
+            return NotFound();
 
-        _unitOfWork.Questions.Remove(question); 
+        _unitOfWork.Questions.Remove(question);
         await _unitOfWork.SaveAsync();
-
         return NoContent();
     }
+
 }

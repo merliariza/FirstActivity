@@ -1,4 +1,6 @@
+using Application.DTOs;
 using Application.Interfaces;
+using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,85 +9,87 @@ namespace ApiFirstActivity.Controllers;
 public class Options_responsesController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public Options_responsesController(IUnitOfWork unitOfWork)
+    public Options_responsesController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
-
-    // GET: api/Options_responses
+  // GET: api/options_responses
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Options_response>>> Get()
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<OptionsResponseDto>>> Get()
     {
-        var Options_responses = await _unitOfWork.Options_responses.GetAllAsync();
-        return Ok(Options_responses);
+        var options_response = await _unitOfWork.Options_responses.GetAllAsync();
+        return _mapper.Map<List<OptionsResponseDto>>(options_response);
     }
 
-    // GET: api/Options_responses/{id}
+    // GET: api/options_responses/{id}
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(int id)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<OptionsResponseDto>> Get(int id)
     {
-        var Options_response = await _unitOfWork.Options_responses.GetByIdAsync(id);
-        if (Options_response == null)
-            return NotFound($"Options_response with id {id} was not found.");
-        return Ok(Options_response);
+        var options_response = await _unitOfWork.Options_responses.GetByIdAsync(id);
+        if (options_response == null)
+        {
+            return NotFound($"Country with id {id} was not found.");
+        }
+
+        return _mapper.Map<OptionsResponseDto>(options_response);
     }
 
-    // POST: api/Options_responses
+    // POST: api/options_responses
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] Options_response options_Response)
+    public async Task<ActionResult<Options_response>> Post(OptionsResponseDto OptionsResponseDto)
     {
-        if (options_Response == null)
-            return BadRequest("options_Response cannot be null.");
-
-        _unitOfWork.Options_responses.Add(options_Response); 
-        await _unitOfWork.SaveAsync(); 
-
-        return CreatedAtAction(nameof(Get), new { id = options_Response.Id }, options_Response);
+        var options_response = _mapper.Map<Options_response>(OptionsResponseDto);
+        _unitOfWork.Options_responses.Add(options_response);
+        await _unitOfWork.SaveAsync();
+        if (OptionsResponseDto == null)
+        {
+            return BadRequest();
+        }
+        return CreatedAtAction(nameof(Post), new { id = OptionsResponseDto.Id }, OptionsResponseDto);
     }
 
-    // PUT: api/Options_responses/{id}
+    // PUT: api/options_responses/{id}
     [HttpPut("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-public async Task<IActionResult> Put(int id, [FromBody] Options_response options_Response)
-{
-    if (options_Response == null || id != options_Response.Id)
-        return BadRequest("Invalid options_Response data.");
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Put(int id, [FromBody] OptionsResponseDto OptionsResponseDto)
+    {
+        if (OptionsResponseDto == null)
+            return NotFound();
 
-    var existingOptions_Response = await _unitOfWork.Options_responses.GetByIdAsync(id);
-    if (existingOptions_Response == null)
-        return NotFound($"options_Response with id {id} not found.");
+        var options_response = _mapper.Map<Options_response>(OptionsResponseDto);
+        //options_response.Optiontext = options_Response.Optiontext;
+        options_response.Updated_at = DateTime.UtcNow;
 
-    existingOptions_Response.Optiontext = options_Response.Optiontext;
-    existingOptions_Response.Updated_at = DateTime.UtcNow;
+        _unitOfWork.Options_responses.Update(options_response);
+        await _unitOfWork.SaveAsync();
 
-    _unitOfWork.Options_responses.Update(existingOptions_Response);
-    await _unitOfWork.SaveAsync();
+        return Ok(OptionsResponseDto);
+    }
 
-    return NoContent();
-}
-
-
-    // DELETE: api/Options_responses/{id}
+    // DELETE: api/options_responses/{id}
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id)
     {
-        var options_Response = await _unitOfWork.Options_responses.GetByIdAsync(id);
-        if (options_Response == null)
-            return NotFound($"options_Response with id {id} not found.");
+        var options_response = await _unitOfWork.Options_responses.GetByIdAsync(id);
+        if (options_response == null)
+            return NotFound();
 
-        _unitOfWork.Options_responses.Remove(options_Response); 
+        _unitOfWork.Options_responses.Remove(options_response);
         await _unitOfWork.SaveAsync();
-
         return NoContent();
     }
+
 }
