@@ -5,6 +5,7 @@ C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bi
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\ApiFirstActivity.runtimeconfig.json
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\ApiFirstActivity.dll
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\ApiFirstActivity.pdb
+C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\Humanizer.dll
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -116,4 +117,3 @@ C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\ob
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.pdb
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ApiFirstActivity.genruntimeconfig.cache
 C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\obj\Debug\net8.0\ref\ApiFirstActivity.dll
-C:\Users\merli\developer\netcoreProjectsCampus\firstActivity\ApiFirstActivity\bin\Debug\net8.0\AutoMapper.dll

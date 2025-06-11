@@ -13,35 +13,30 @@ builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.ConfigureCors();
 builder.Services.AddAplicacionServices();
 builder.Services.AddControllers();
+builder.Services.AddCustomRateLimiter();
 
 // Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Mi API",
-        Version = "v1"
-    });
-});
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<FirstActivityDbContext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
 var app = builder.Build();
 
-// Enable Swagger middleware
-app.UseSwagger();
-app.UseSwaggerUI(options =>
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi API v1");
-    options.RoutePrefix = string.Empty; // Esto hace que Swagger UI esté en la raíz (http://localhost:puerto/)
-});
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
+app.UseRateLimiter();
 app.MapControllers();
 app.Run();

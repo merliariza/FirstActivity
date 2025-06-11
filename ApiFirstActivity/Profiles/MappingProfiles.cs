@@ -17,5 +17,7 @@ public class MappingProfiles : Profile
         CreateMap<Sub_question, SubQuestionDto>().ReverseMap();
         CreateMap<Summary_option, SummaryOptionDto>().ReverseMap();
         CreateMap<Survey, SurveyDto>().ReverseMap();
+        CreateMap<Member, MemberDto>().ReverseMap();
+        CreateMap<Rol, RolDto>().ReverseMap();
     }
 }

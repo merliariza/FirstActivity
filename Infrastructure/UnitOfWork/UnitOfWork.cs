@@ -20,11 +20,13 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private ISub_questionRepository? _sub_questions;
     private ISummary_optionRepository? _summary_options;
     private ISurveyRepository? _surveys;
+    private IMemberRepository _member;
+    private IRolRepository _rol;
 
     public UnitOfWork(FirstActivityDbContext context)
-    {
-        _context = context;
-    }
+        {
+            _context = context;
+        }
 
     public ICategories_catalogRepository Categories_catalogs
     {
@@ -133,11 +135,34 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _surveys;
         }
     }
+    
+    public IMemberRepository Members
+    {
+        get
+        {
+            if (_member == null)
+            {
+                _member = new MemberRepository(_context);
+            }
+            return _member;
+        }
+    }
+    public IRolRepository Roles
+    {
+        get
+        {
+            if (_rol == null)
+            {
+                _rol = new RolRepository(_context);
+            }
+            return _rol;
+        }
+    }
 
     public async Task<int> SaveAsync()
-    {
-        return await _context.SaveChangesAsync();
-    }
+        {
+            return await _context.SaveChangesAsync();
+        }
 
     public void Dispose()
     {

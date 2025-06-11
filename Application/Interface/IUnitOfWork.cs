@@ -14,6 +14,8 @@ namespace Application.Interfaces
         ISub_questionRepository Sub_questions { get; }
         ISummary_optionRepository Summary_options { get; }
         ISurveyRepository Surveys { get; }
+        IMemberRepository Members { get; }
+        IRolRepository Roles { get; }
         
         Task<int> SaveAsync();
     }
