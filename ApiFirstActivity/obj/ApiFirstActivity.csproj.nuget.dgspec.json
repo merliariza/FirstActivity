@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj": {}
+    "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj": {
+    "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj",
+        "projectUniqueName": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj",
         "projectName": "ApiFirstActivity",
-        "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj",
+        "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\ApiFirstActivity\\ApiFirstActivity.csproj",
         "packagesPath": "C:\\Users\\merli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\ApiFirstActivity\\obj\\",
+        "outputPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\ApiFirstActivity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\merli\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj"
+              "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj"
               },
-              "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.15, )"
@@ -67,6 +71,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[8.1.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.9.0, )"
             }
           },
           "imports": [
@@ -92,14 +100,14 @@
         }
       }
     },
-    "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj": {
+    "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\merli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\obj\\",
+        "outputPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\merli\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -114,8 +122,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj"
+              "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj"
               }
             }
           }
@@ -154,14 +162,14 @@
         }
       }
     },
-    "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj": {
+    "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\merli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\merli\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -212,14 +220,14 @@
         }
       }
     },
-    "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\merli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\merli\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -234,11 +242,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Application\\Application.csproj"
+              "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Application\\Application.csproj"
               },
-              "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\merli\\developer\\netcoreProjectsCampus\\firstActivity\\Domain\\Domain.csproj"
+              "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\merli\\Downloads\\activity\\FirstActivity\\Domain\\Domain.csproj"
               }
             }
           }

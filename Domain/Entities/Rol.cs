@@ -1,11 +1,15 @@
-namespace Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class Rol : BaseEntity
+namespace Domain.Entities
 {
-    public int Id { get; set; }
+    public class role : BaseEntity
+    {
+        public int Id { get; set; } 
     public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public ICollection<Member> Members { get; set; } = new HashSet<Member>();
+    //public ICollection<UserMember> UserMembers { get; set; } = new HashSet<UserMember>();
     public ICollection<MemberRols> MemberRols { get; set; } = new HashSet<MemberRols>();
-
+    }
 }

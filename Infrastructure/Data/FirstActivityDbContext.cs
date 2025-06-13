@@ -19,9 +19,7 @@ namespace Infrastructure.Data
         public DbSet<Summary_option> Summary_options { get; set; }
         public DbSet<Options_response> Options_responses { get; set; }
         public DbSet<Member> Members { get; set; }
-        public DbSet<Rol> Rols { get; set; }
-        public DbSet<MemberRols> MemberRols { get; set; }
-
+        public DbSet<role> roles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,8 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Application.Interfaces.Repositories
+namespace Application.Interfaces
 {
-    public interface IRolRepository : IGenericRepository<Rol>
+    public interface IRolRepository : IGenericRepository<role>
     {
+        void Attach(role role);
     }
 }

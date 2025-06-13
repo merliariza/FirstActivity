@@ -1,23 +1,25 @@
 using System.Reflection;
 using ApiFirstActivity.Extensions;
+using Application.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 
-// Add services to the container.
+// Add or inject services to the container.
 builder.Services.ConfigureCors();
-builder.Services.AddAplicacionServices();
 builder.Services.AddControllers();
-builder.Services.AddCustomRateLimiter();
 
-// Swagger configuration
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddAplicacionServices();
+
+builder.Services.AddCustomRateLimiter();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<FirstActivityDbContext>(options =>
 {
@@ -26,17 +28,22 @@ builder.Services.AddDbContext<FirstActivityDbContext>(options =>
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.MapControllers();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// use services injected
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseRateLimiter();
-app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
 app.Run();
+

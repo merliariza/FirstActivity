@@ -20,8 +20,8 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private ISub_questionRepository? _sub_questions;
     private ISummary_optionRepository? _summary_options;
     private ISurveyRepository? _surveys;
-    private IMemberRepository _member;
-    private IRolRepository _rol;
+        private IMemberRepository? _member;
+        private IRolRepository? _rol;
 
     public UnitOfWork(FirstActivityDbContext context)
         {
@@ -159,7 +159,11 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public async Task<int> SaveAsync()
+        public IUserMemberRepository UserMember => throw new NotImplementedException();
+
+        public IMemberRols MemberRols => throw new NotImplementedException();
+
+        public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();
         }

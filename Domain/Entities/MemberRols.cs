@@ -1,10 +1,15 @@
-namespace Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class MemberRols : BaseEntity
+namespace Domain.Entities
 {
-    public int MemberId { get; set; }
-    public Member Member { get; set; } = new Member(); 
-    public int RolId { get; set; } 
-    public Rol Rol { get; set; } = new Rol();
-    
+    public class MemberRols : BaseEntity
+    {
+        public string? MemberId { get; set; }
+        public UserMember? UserMember { get; set; }
+        public int RolId { get; set; }
+        public role? role { get; set; }
+    }
 }
