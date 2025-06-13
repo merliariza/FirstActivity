@@ -131,6 +131,66 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("chapters", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("Updated_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MemberRols", b =>
+                {
+                    b.Property<string>("MemberId")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<int>("RolId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("MemberId1")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Updated_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("MemberId", "RolId");
+
+                    b.HasIndex("MemberId1");
+
+                    b.HasIndex("RolId");
+
+                    b.ToTable("members_rols", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Option_question", b =>
                 {
                     b.Property<int>("Id")
@@ -257,6 +317,44 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("questions", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("MemberId")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime?>("Revoked")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("Updated_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("refresh_tokens", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Sub_question", b =>
                 {
                     b.Property<int>("Id")
@@ -379,6 +477,71 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("surveys", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.UserMember", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("Updated_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("members", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
+
+                    b.Property<DateTime?>("Updated_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("roles", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Category_option", b =>
                 {
                     b.HasOne("Domain.Entities.Categories_catalog", "Categories_catalogs")
@@ -407,6 +570,29 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Survey");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MemberRols", b =>
+                {
+                    b.HasOne("Domain.Entities.UserMember", "UserMember")
+                        .WithMany("MemberRols")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Member", null)
+                        .WithMany("MemberRols")
+                        .HasForeignKey("MemberId1");
+
+                    b.HasOne("Domain.Entities.role", "role")
+                        .WithMany("MemberRols")
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserMember");
+
+                    b.Navigation("role");
                 });
 
             modelBuilder.Entity("Domain.Entities.Option_question", b =>
@@ -455,6 +641,17 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Chapter");
                 });
 
+            modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
+                {
+                    b.HasOne("Domain.Entities.UserMember", "Users")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("Domain.Entities.Sub_question", b =>
                 {
                     b.HasOne("Domain.Entities.Question", "Question")
@@ -485,6 +682,13 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Survey");
                 });
 
+            modelBuilder.Entity("Domain.Entities.role", b =>
+                {
+                    b.HasOne("Domain.Entities.Member", null)
+                        .WithMany("roles")
+                        .HasForeignKey("MemberId");
+                });
+
             modelBuilder.Entity("Domain.Entities.Categories_catalog", b =>
                 {
                     b.Navigation("Category_options");
@@ -495,6 +699,13 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Chapter", b =>
                 {
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Member", b =>
+                {
+                    b.Navigation("MemberRols");
+
+                    b.Navigation("roles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Options_response", b =>
@@ -523,6 +734,18 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Chapters");
 
                     b.Navigation("Summary_options");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UserMember", b =>
+                {
+                    b.Navigation("MemberRols");
+
+                    b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("Domain.Entities.role", b =>
+                {
+                    b.Navigation("MemberRols");
                 });
 #pragma warning restore 612, 618
         }

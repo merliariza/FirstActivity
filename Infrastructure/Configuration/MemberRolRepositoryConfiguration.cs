@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configuration
 {
-    public class MemberRolRepositoryConfiguration
-    {
-        public void Configure(EntityTypeBuilder<MemberRols> builder)
-        {
+public class MemberRolRepositoryConfiguration : IEntityTypeConfiguration<MemberRols>
+{
+    public void Configure(EntityTypeBuilder<MemberRols> builder)
+{
             // Aquí puedes configurar las propiedades de la entidad Marca
             // utilizando el objeto 'builder'.
             builder.ToTable("members_rols");
