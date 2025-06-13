@@ -21,6 +21,9 @@ builder.Services.AddCustomRateLimiter();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<FirstActivityDbContext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
@@ -41,7 +44,7 @@ if (app.Environment.IsDevelopment())
 
 // use services injected
 app.UseCors("CorsPolicy");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
